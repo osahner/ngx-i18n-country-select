@@ -1,7 +1,7 @@
 {
   "name": "ng2-i18n-country-select",
-  "version": "1.0.4",
-  "description": "Angular2 (v4) Bootstrap 4 i18n country select input",
+  "version": "1.0.1",
+  "description": "Angular4 Bootstrap4 i18n country select input",
   "main": "index.ts",
   "scripts": {
     "ngc": "node_modules/.bin/ngc",
