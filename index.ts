@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { I18nCountrySelectComponent } from './src/ng2-i18n-country-select';
+import { I18nCountrySelectComponent } from './src/ngx-i18n-country-select';
 
 @NgModule({
   imports: [CommonModule, FormsModule],

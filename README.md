@@ -1,10 +1,11 @@
-# ng2-i18n-country-select
+# ngx-i18n-country-select
 
-## Angular2 Bootstrap4 Country Select
+## Angular4 Bootstrap4 i18n country select
 
-Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries) Library.
+Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries) library. 
 
-#### :warning: Requires 
+#### Requires 
+
 * **Angular 2** `^=4.0.3`
 * **Bootstrap 4** `=v6`
 * **i18n-iso-countries** `^=1.11.0`
@@ -13,14 +14,14 @@ Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/no
 ### Installation
 
 ```
-$ npm install https://github.com/osahner/ng2-i18n-country-select.git --save
+$ npm install https://github.com/osahner/ngx-i18n-country-select.git --save
 ```
 
 ### Example
 
 ```ts
 // app.module.ts
-import { I18nCountrySelectModule } from 'ng2-i18n-country-select';
+import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
 ...
 @NgModule({
   ...
@@ -35,7 +36,6 @@ import { I18nCountrySelectModule } from 'ng2-i18n-country-select';
 ```html
 <i18n-country-select [(iso3166Alpha2)]="item.isocode" size="sm"></i18n-country-select>
 ```
-
 
 ### Attributes
 

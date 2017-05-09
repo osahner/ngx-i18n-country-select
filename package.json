@@ -1,6 +1,6 @@
 {
-  "name": "ng2-i18n-country-select",
-  "version": "1.0.1",
+  "name": "ngx-i18n-country-select",
+  "version": "1.0.2",
   "description": "Angular4 Bootstrap4 i18n country select input",
   "main": "index.ts",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/osahner/ng2-i18n-country-select.git"
+    "url": "git+https://github.com/osahner/ngx-i18n-country-select.git"
   },
   "keywords": [
     "Angular2",
@@ -22,9 +22,9 @@
   "author": "Oliver Sahner <osahner@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/osahner/ng2-i18n-country-select/issues"
+    "url": "https://github.com/osahner/ngx-i18n-country-select/issues"
   },
-  "homepage": "https://github.com/osahner/ng2-i18n-country-select#readme",
+  "homepage": "https://github.com/osahner/ngx-i18n-country-select#readme",
   "peerDependencies": {
     "@angular/core": ">=4.0.0",
     "bootstrap": "next"
