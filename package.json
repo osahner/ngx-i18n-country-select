@@ -1,6 +1,6 @@
 {
   "name": "ngx-i18n-country-select",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Angular4 Bootstrap4 i18n country select input",
   "main": "index.ts",
   "scripts": {

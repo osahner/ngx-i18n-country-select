@@ -42,7 +42,9 @@ export class I18nCountrySelectComponent implements AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    this.iso3166Alpha2 = this.iso3166Alpha2.toLowerCase();
+    if (this.iso3166Alpha2) {
+      this.iso3166Alpha2 = this.iso3166Alpha2.toLowerCase();
+    }
     this.cdRef.detectChanges(); // avoid ExpressionChangedAfterItHasBeenCheckedError
   }
 
