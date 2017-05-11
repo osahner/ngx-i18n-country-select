@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Inject, Input, LOCALE_ID, Output } from '@angular/core';
+import {
+  Component, EventEmitter, Inject, Input, LOCALE_ID, Output, AfterViewChecked,
+  ChangeDetectorRef
+} from '@angular/core';
 
 import { getNames } from 'i18n-iso-countries';
 
@@ -11,7 +14,7 @@ import { getNames } from 'i18n-iso-countries';
     </select>
   `
 })
-export class I18nCountrySelectComponent {
+export class I18nCountrySelectComponent implements AfterViewChecked {
   @Input()
   public iso3166Alpha2: string;
   @Input()
@@ -21,7 +24,8 @@ export class I18nCountrySelectComponent {
 
   public myCountries: any[] = [];
 
-  constructor(@Inject(LOCALE_ID) private locale: string) {
+  constructor(private cdRef: ChangeDetectorRef,
+              @Inject(LOCALE_ID) private locale: string) {
     // fallback locale is english
     let iso3166Alpha2 = 'en';
     if (this.locale && this.locale.length > 2) {
@@ -35,6 +39,11 @@ export class I18nCountrySelectComponent {
     }
     // sort
     this.myCountries.sort((a: any, b: any) => a.display.localeCompare(b.display));
+  }
+
+  ngAfterViewChecked() {
+    this.iso3166Alpha2 = this.iso3166Alpha2.toLowerCase();
+    this.cdRef.detectChanges(); // avoid ExpressionChangedAfterItHasBeenCheckedError
   }
 
   public change(newValue: string): void {
