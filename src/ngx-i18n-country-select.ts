@@ -15,6 +15,9 @@ import { getNames } from 'i18n-iso-countries';
   `
 })
 export class I18nCountrySelectComponent implements AfterViewChecked {
+  private validLocales = ['ar', 'cs', 'de', 'en', 'es', 'et', 'fi', 'fr', 'hu', 'it', 'nb', 'nl', 'nn', 'pl', 'pt',
+    'ru', 'sv', 'tr', 'uk', 'zh'];
+
   @Input()
   public iso3166Alpha2: string;
   @Input()
@@ -25,14 +28,25 @@ export class I18nCountrySelectComponent implements AfterViewChecked {
   public myCountries: any[] = [];
 
   constructor(private cdRef: ChangeDetectorRef,
-              @Inject(LOCALE_ID) private locale: string) {
-    // fallback locale is english
-    let iso3166Alpha2 = 'en';
-    if (this.locale && this.locale.length > 2) {
-      // convert Locale from ISO 3166-2 to ISO 3166 alpha2
-      iso3166Alpha2 = this.locale.slice(0, 2);
+              @Inject(LOCALE_ID) private localeId: string) {
+    let locale: string;
+    if (this.localeId) {
+      if (this.localeId.length > 2) {
+        // convert Locale from ISO 3166-2 to ISO 3166 alpha2
+        locale = this.localeId.toLowerCase().slice(0, 2);
+      } else {
+        locale = this.localeId.toLowerCase();
+      }
     }
-    const iso3166 = getNames(iso3166Alpha2);
+    if (this.validLocales.indexOf(locale) > -1) {
+      this.loadCountries(locale);
+    } else {
+      this.loadCountries('en'); // fallback locale is english
+    }
+  }
+
+  private loadCountries(locale: string): void {
+    const iso3166 = getNames(locale);
 
     for (const key of Object.keys(iso3166)) {
       this.myCountries.push({ display: iso3166[key], value: key.toLowerCase() });
