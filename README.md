@@ -9,7 +9,7 @@ Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/no
 * **Angular 2** `^=4.0.3`
 * **Bootstrap 4** `=v6`
 * **i18n-iso-countries** `^=1.11.0`
-
+* *optional* **ngx-uploader** `^3.0.3`
 
 ### Installation
 
