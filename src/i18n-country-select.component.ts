@@ -44,7 +44,7 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
   constructor(private cdRef: ChangeDetectorRef,
               @Inject(LOCALE_ID) private localeId: string,
               @Optional() private translate: TranslateService) {
-    let locale: string = 'en';
+    let locale = 'en';
 
     if (this.translate) {
       locale = this.translate.currentLang;

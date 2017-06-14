@@ -1,47 +1,72 @@
 # ngx-i18n-country-select
 
-## Angular4 Bootstrap4 i18n country select
+## Installation
 
-Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries) library. 
+To install this library, run:
 
-#### Requires 
-
-* **Angular 2** `^=4.0.3`
-* **Bootstrap 4** `=v6`
-* **i18n-iso-countries** `^=1.11.0`
-* *optional* **@ngx-translate/core** `^6.0.1`
-
-### Installation
-
-```
-$ npm install https://github.com/osahner/ngx-i18n-country-select.git --save
+```bash
+$ npm install ngx-i18n-country-select --save
 ```
 
-### Example
+## Consuming your library
 
-```ts
-// app.module.ts
+Once you have published your library to npm, you can import your library in any Angular application by running:
+
+```bash
+$ npm install ngx-i18n-country-select
+```
+
+and then from your Angular `AppModule`:
+
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
+// Import your library
 import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
-...
+
 @NgModule({
-  ...
-  imports: [
-    I18nCountrySelectModule,
-    ...
+  declarations: [
+    AppComponent
   ],
-  ...
+  imports: [
+    BrowserModule,
+
+    // Specify your library as an import
+    I18nCountrySelectModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
+export class AppModule { }
 ```
 
-```html
-<i18n-country-select [(iso3166Alpha2)]="item.isocode" size="sm"></i18n-country-select>
+Once your library is imported, you can use its components, directives and pipes in your Angular application:
+
+```xml
+<!-- You can now use your library component in app.component.html -->
+<h1>
+  {{title}}
+</h1>
+<sampleComponent></sampleComponent>
 ```
 
-### Attributes
+## Development
 
-* **size**: `sm`, `lg` or nothing
-* **iso3166Alpha2**: model as [ISO 3166-1 Aplpha2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
+To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
 
-### LICENCE
+```bash
+$ npm run build
+```
 
-MIT
+To lint all `*.ts` files:
+
+```bash
+$ npm run lint
+```
+
+## License
+
+MIT © [Oliver Sahner](mailto:osahner@medianet.de)

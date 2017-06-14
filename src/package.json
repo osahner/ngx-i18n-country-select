@@ -1,0 +1,21 @@
+{
+  "name": "ngx-i18n-country-select",
+  "version": "1.0.6",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osahner/ngx-i18n-country-select.git"
+  },
+  "author": {
+    "name": "Oliver Sahner",
+    "email": "osahner@medianet.de"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/osahner/ngx-i18n-country-select.git/issues"
+  },
+  "module": "ngx-i18n-country-select.js",
+  "typings": "ngx-i18n-country-select.d.ts"
+}

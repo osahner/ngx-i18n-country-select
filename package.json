@@ -1,55 +1,76 @@
 {
   "name": "ngx-i18n-country-select",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Angular4 Bootstrap4 i18n country select input",
-  "main": "index.ts",
   "scripts": {
-    "ngc": "node_modules/.bin/ngc",
-    "tsc": "node_modules/.bin/tsc",
-    "build": "rimraf dist && tsc",
-    "build-aot": "rimraf dist && ngc",
-    "clean": "rimraf dist"
+    "build": "gulp build",
+    "build:watch": "gulp",
+    "docs": "npm run docs:build",
+    "docs:build": "compodoc -p tsconfig.json -n ngx-i18n-country-select -d docs --hideGenerator",
+    "docs:serve": "npm run docs:build -- -s",
+    "docs:watch": "npm run docs:build -- -s -w",
+    "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
+    "test": "tsc && karma start"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/osahner/ngx-i18n-country-select.git"
+    "url": "https://github.com/osahner/ngx-i18n-country-select.git"
+  },
+  "author": {
+    "name": "Oliver Sahner",
+    "email": "osahner@medianet.de"
   },
   "keywords": [
-    "Angular2",
-    "Bootstrap4",
-    "Password"
+    "angular",
+    "bootstrap",
+    "password"
   ],
-  "author": "Oliver Sahner <osahner@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/osahner/ngx-i18n-country-select/issues"
-  },
-  "homepage": "https://github.com/osahner/ngx-i18n-country-select#readme",
-  "peerDependencies": {
-    "@angular/core": ">=4.0.0",
-    "bootstrap": "next",
-    "@ngx-translate/core": "^6.0.1"
+    "url": "https://github.com/osahner/ngx-i18n-country-select.git/issues"
   },
   "devDependencies": {
-    "@angular/common": "^=4.0.3",
-    "@angular/compiler": "^=4.0.3",
-    "@angular/compiler-cli": "^=4.0.3",
-    "@angular/core": "^=4.0.3",
-    "@angular/forms": "^=4.0.3",
-    "@angular/platform-browser": "^=4.0.3",
-    "@angular/platform-browser-dynamic": "^=4.0.3",
-    "@angular/platform-server": "^=4.0.3",
-    "@types/core-js": "^0.9.41",
-    "@types/node": "^7.0.12",
-    "codelyzer": "^2.1.1",
-    "rimraf": "^2.6.1",
-    "rxjs": "^5.3.0",
-    "tslint": "^5.0.0",
-    "typedoc": "^0.5.10",
-    "typescript": "2.2.2",
-    "zone.js": "=0.8.4"
+    "@angular/common": "^4.0.3",
+    "@angular/compiler": "^4.0.3",
+    "@angular/compiler-cli": "^4.0.3",
+    "@angular/core": "^4.0.3",
+    "@angular/forms": "^4.2.2",
+    "@angular/platform-browser": "^4.0.3",
+    "@angular/platform-browser-dynamic": "^4.0.3",
+    "@compodoc/compodoc": "^1.0.0-beta.7",
+    "@ngx-translate/core": "^7.0.0",
+    "@types/jasmine": "2.5.38",
+    "@types/node": "~6.0.60",
+    "codelyzer": "~2.0.0",
+    "core-js": "^2.4.1",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-rollup": "^2.11.0",
+    "jasmine-core": "~2.5.2",
+    "jasmine-spec-reporter": "~3.2.0",
+    "karma": "~1.4.1",
+    "karma-chrome-launcher": "~2.0.0",
+    "karma-cli": "~1.0.1",
+    "karma-coverage-istanbul-reporter": "^0.2.0",
+    "karma-jasmine": "~1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "node-sass": "^4.5.2",
+    "node-sass-tilde-importer": "^1.0.0",
+    "node-watch": "^0.5.2",
+    "protractor": "~5.1.0",
+    "rollup": "^0.41.6",
+    "run-sequence": "^1.2.2",
+    "rxjs": "^5.1.0",
+    "ts-node": "~2.0.0",
+    "tslint": "~4.5.0",
+    "typescript": "~2.2.0",
+    "zone.js": "^0.8.4"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   },
   "dependencies": {
-    "i18n-iso-countries": "^1.11.0"
+    "i18n-iso-countries": "^1.11.2"
   }
 }
