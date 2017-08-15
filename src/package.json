@@ -1,21 +1,32 @@
 {
   "name": "ngx-i18n-country-select",
-  "version": "1.0.6",
+  "version": "1.1.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/osahner/ngx-i18n-country-select.git"
+    "url": "git+https://github.com/osahner/ngx-i18n-country-select.git"
   },
   "author": {
     "name": "Oliver Sahner",
-    "email": "osahner@medianet.de"
+    "email": "osahner@gmail.com"
   },
   "keywords": [
-    "angular"
+    "angular",
+    "bootstrap",
+    "password"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/osahner/ngx-i18n-country-select.git/issues"
+    "url": "https://github.com/osahner/ngx-i18n-country-select/issues"
   },
+  "homepage": "https://github.com/osahner/ngx-i18n-country-select#readme",
+  "main": "ngx-i18n-country-select.umd.js",
   "module": "ngx-i18n-country-select.js",
-  "typings": "ngx-i18n-country-select.d.ts"
+  "jsnext:main": "ngx-i18n-country-select.js",
+  "typings": "ngx-i18n-country-select.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.2.4",
+    "@angular/common": "^4.2.4",
+    "@angular/forms": "^4.2.4",
+    "i18n-iso-countries": "^1.15.1"
+  }
 }

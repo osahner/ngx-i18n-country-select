@@ -3,13 +3,10 @@
     "declaration": true,
     "module": "es2015",
     "target": "es5",
-    "baseUrl": "",
-     "paths": {
+    "baseUrl": ".",
+    "paths": {
       "@angular/*": [
         "../node_modules/@angular/*"
-      ],
-      "ngx-translate/*": [
-        "../node_modules/ngx-translate/*"
       ]
     },
     "stripInternal": true,

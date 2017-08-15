@@ -2,7 +2,6 @@ import {
   Component, EventEmitter, Inject, Input, LOCALE_ID, Output, AfterViewChecked,
   ChangeDetectorRef, Optional, OnDestroy
 } from '@angular/core';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 import { getNames } from 'i18n-iso-countries';
 
@@ -11,6 +10,7 @@ import { getNames } from 'i18n-iso-countries';
   template: `
     <select name="theme" [class]="'form-control' + (size ? ' form-control-' + size : '')"
       [ngModel]="iso3166Alpha2" (ngModelChange)="change($event)">
+      <option [ngValue]="null">{{defaultLabel}}</option>
       <option *ngFor="let country of myCountries" [ngValue]="country.value">{{country.display}}</option>
     </select>
   `
@@ -27,12 +27,13 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
     nl: 'Gelieve te kiezen...',
     pl: 'proszę wybrać...'
   };
-  private defaultValue = '';
+  private defaultLabel: string;
 
   private sub: any;
 
   @Input()
   public iso3166Alpha2: string;
+  
   @Input()
   public size: 'sm' | 'lg';
 
@@ -42,32 +43,22 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
   public myCountries: any[] = [];
 
   constructor(private cdRef: ChangeDetectorRef,
-              @Inject(LOCALE_ID) private localeId: string,
-              @Optional() private translate: TranslateService) {
+              @Inject(LOCALE_ID) private localeId: string) {
     let locale = 'en';
 
-    if (this.translate) {
-      locale = this.translate.currentLang;
-    } else if (this.localeId) {
-      locale = this.localeId;
-    }
-    if (locale.length > 2) {
+    if (localeId.length > 2) {
       // convert Locale from ISO 3166-2 to ISO 3166 alpha2
-      locale = locale.toLowerCase().slice(0, 2);
+      locale = localeId.toLowerCase().slice(0, 2);
     } else {
-      locale = locale.toLowerCase();
+      locale = localeId.toLowerCase();
     }
+
     if (this.validLocales.indexOf(locale) > -1) {
       this.loadCountries(locale);
     } else {
       this.loadCountries('en'); // fallback locale is english
     }
-
-    if (this.translate) {
-      this.sub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-        this.loadCountries(event.lang);
-      });
-    }
+    this.defaultLabel = this.pleaseChoose.hasOwnProperty(locale) ? this.pleaseChoose[locale] : this.pleaseChoose.en;
   }
 
   private loadCountries(locale: string): void {
@@ -80,10 +71,6 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
     }
     // sort
     this.myCountries.sort((a: any, b: any) => a.display.localeCompare(b.display));
-    this.myCountries.unshift({
-      display: this.pleaseChoose.hasOwnProperty(locale) ? this.pleaseChoose[locale] : this.pleaseChoose.en,
-      value: this.defaultValue
-    });
   }
 
   public change(newValue: string): void {

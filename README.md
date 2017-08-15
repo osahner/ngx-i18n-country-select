@@ -1,5 +1,14 @@
 # ngx-i18n-country-select
 
+## Angular4 Bootstrap4 i18n country select
+
+Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries) library. 
+
+#### Requires 
+
+* **Bootstrap 4** `=v6`
+* **i18n-iso-countries** `^1.15.1`
+
 ## Installation
 
 To install this library, run:
@@ -33,9 +42,8 @@ import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
   ],
   imports: [
     BrowserModule,
-
     // Specify your library as an import
-    I18nCountrySelectModule
+    I18nCountrySelectModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -50,23 +58,15 @@ Once your library is imported, you can use its components, directives and pipes 
 <h1>
   {{title}}
 </h1>
-<sampleComponent></sampleComponent>
+<i18n-country-select [(iso3166Alpha2)]="item.isocode" size="sm"></i18n-country-select>
 ```
 
-## Development
+### Attributes
 
-To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
+* **size**: `sm`, `lg` or nothing
+* **iso3166Alpha2**: model as [ISO 3166-1 Aplpha2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 
-```bash
-$ npm run build
-```
 
-To lint all `*.ts` files:
+### License
 
-```bash
-$ npm run lint
-```
-
-## License
-
-MIT © [Oliver Sahner](mailto:osahner@medianet.de)
+MIT © [Oliver Sahner](mailto:osahner@gmail.com)
