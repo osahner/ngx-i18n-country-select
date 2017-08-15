@@ -1,6 +1,6 @@
 import {
   Component, EventEmitter, Inject, Input, LOCALE_ID, Output, AfterViewChecked,
-  ChangeDetectorRef, Optional, OnDestroy
+  ChangeDetectorRef, OnDestroy
 } from '@angular/core';
 
 import { getNames } from 'i18n-iso-countries';
@@ -46,11 +46,11 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
               @Inject(LOCALE_ID) private localeId: string) {
     let locale = 'en';
 
-    if (localeId.length > 2) {
+    if (this.localeId.length > 2) {
       // convert Locale from ISO 3166-2 to ISO 3166 alpha2
-      locale = localeId.toLowerCase().slice(0, 2);
+      locale = this.localeId.toLowerCase().slice(0, 2);
     } else {
-      locale = localeId.toLowerCase();
+      locale = this.localeId.toLowerCase();
     }
 
     if (this.validLocales.indexOf(locale) > -1) {
