@@ -4,12 +4,14 @@
 
 Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries) library. 
 
+[![Build Status](https://travis-ci.org/osahner/ngx-i18n-country-select.svg?branch=master)](https://travis-ci.org/osahner/ngx-i18n-country-select)
+
 #### Requires 
 
 * **Bootstrap 4** `=v6`
 * **i18n-iso-countries** `^1.15.1`
 
-## Installation
+### Installation
 
 To install this library, run:
 
@@ -17,23 +19,11 @@ To install this library, run:
 $ npm install ngx-i18n-country-select --save
 ```
 
-## Consuming your library
-
-Once you have published your library to npm, you can import your library in any Angular application by running:
-
-```bash
-$ npm install ngx-i18n-country-select
-```
-
-and then from your Angular `AppModule`:
+### Example
 
 ```typescript
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-
-// Import your library
+// app.module.ts
+...
 import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
 
 @NgModule({
@@ -42,7 +32,7 @@ import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
   ],
   imports: [
     BrowserModule,
-    // Specify your library as an import
+    FormsModule,
     I18nCountrySelectModule.forRoot()
   ],
   providers: [],
@@ -51,13 +41,7 @@ import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
-
 ```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
 <i18n-country-select [(iso3166Alpha2)]="item.isocode" size="sm"></i18n-country-select>
 ```
 
