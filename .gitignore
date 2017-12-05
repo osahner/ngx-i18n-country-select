@@ -27,8 +27,7 @@ Desktop.ini
 
 # Build files
 dist/*
-
-# Karma transform
+.playground
 init-test-bed.spec.js
 
 # coverage
