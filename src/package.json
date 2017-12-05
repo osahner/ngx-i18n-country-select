@@ -28,6 +28,6 @@
   "peerDependencies": {
     "@ngx-translate/core": "^9.0.1",
     "bootstrap": "^4.0.0-beta.2",
-    "i18n-iso-countries": "^3.2.2"
+    "i18n-iso-countries": "^2.1.0"
   }
 }
