@@ -1,6 +1,6 @@
 # ngx-i18n-country-select
 
-## Angular4 Bootstrap4 i18n country select
+## A i18n country select widget
 
 Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries) library. 
 
@@ -8,8 +8,9 @@ Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/no
 
 #### Requires 
 
-* **Bootstrap 4** `=v6`
-* **i18n-iso-countries** `^1.15.1`
+* **Angular** `^4.2.4 || ^5.0.0`
+* **Bootstrap** `^4.0.0-beta.2`
+* **i18n-iso-countries** `^2.1.0`
 
 ### Installation
 
@@ -21,7 +22,7 @@ $ npm install ngx-i18n-country-select --save
 
 ### Example
 
-```typescript
+```ts
 // app.module.ts
 ...
 import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
@@ -41,16 +42,16 @@ import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
 export class AppModule { }
 ```
 
-```xml
+```html
 <i18n-country-select [(iso3166Alpha2)]="item.isocode" size="sm"></i18n-country-select>
 ```
 
 ### Attributes
 
 * **size**: `sm`, `lg` or nothing
-* **iso3166Alpha2**: model as [ISO 3166-1 Aplpha2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
+* **iso3166Alpha2**: model as [ISO 3166-1 Alpha2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 
 
 ### License
 
-MIT © [Oliver Sahner](mailto:osahner@gmail.com)
+MIT

@@ -1,6 +1,6 @@
 {
   "name": "ngx-i18n-country-select",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/osahner/ngx-i18n-country-select.git"
@@ -12,7 +12,9 @@
   "keywords": [
     "angular",
     "bootstrap",
-    "password"
+    "select",
+    "widget",
+    "i18n"
   ],
   "license": "MIT",
   "bugs": {
@@ -24,9 +26,8 @@
   "jsnext:main": "ngx-i18n-country-select.js",
   "typings": "ngx-i18n-country-select.d.ts",
   "peerDependencies": {
-    "@angular/core": "^4.2.4",
-    "@angular/common": "^4.2.4",
-    "@angular/forms": "^4.2.4",
-    "i18n-iso-countries": "^1.15.1"
+    "@ngx-translate/core": "^9.0.1",
+    "bootstrap": "^4.0.0-beta.2",
+    "i18n-iso-countries": "^2.1.0"
   }
 }
