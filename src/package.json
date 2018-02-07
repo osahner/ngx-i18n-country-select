@@ -26,9 +26,9 @@
   "jsnext:main": "ngx-i18n-country-select.js",
   "typings": "ngx-i18n-country-select.d.ts",
   "dependencies": {
-    "i18n-iso-countries": "^2.1.0"
   },
   "peerDependencies": {
+    "i18n-iso-countries": "^2.1.0",
     "@angular/core": "^5.0.5"
   }
 }
