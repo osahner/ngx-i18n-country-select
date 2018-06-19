@@ -8,7 +8,7 @@ Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/no
 
 #### Requires 
 
-* **Angular** `^^5.0.5`
+* **Angular** `^5.0.5`
 * **Bootstrap** `^4.0.0`
 * **i18n-iso-countries** `^2.1.0`
 
@@ -17,7 +17,7 @@ Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/no
 To install this library, run:
 
 ```bash
-npm install 18n-iso-countries@^2.1.0  --save
+npm install i18n-iso-countries@^2.1.0  --save
 npm install ngx-i18n-country-select --save
 ```
 
