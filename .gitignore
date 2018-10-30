@@ -26,6 +26,7 @@ Desktop.ini
 **/*.ngfactory.ts
 
 # Build files
+.tmp
 dist/*
 .playground
 init-test-bed.spec.js

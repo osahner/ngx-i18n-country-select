@@ -1,6 +1,6 @@
 {
   "name": "ngx-i18n-country-select",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/osahner/ngx-i18n-country-select.git"
@@ -29,6 +29,6 @@
   },
   "peerDependencies": {
     "i18n-iso-countries": "^2.1.0",
-    "@angular/core": "^5.0.5"
+    "@angular/core": "^5"
   }
 }
