@@ -16,7 +16,7 @@ import { getNames } from 'i18n-iso-countries';
   selector: 'i18n-country-select',
   template: `
     <select name="theme" [class]="'form-control' + (size ? ' form-control-' + size : '')"
-      [ngModel]="iso3166Alpha2" (ngModelChange)="change($event)">
+      [ngModel]="iso3166Alpha2" (ngModelChange)="change($event)" [disabled]="!editable">
       <option [ngValue]="null">{{defaultLabel}}</option>
       <option *ngFor="let country of myCountries" [ngValue]="country.value">{{country.display}}</option>
     </select>
@@ -33,7 +33,7 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
     nl: 'Gelieve te kiezen...',
     pl: 'proszę wybrać...'
   };
-  private defaultLabel: string;
+  public defaultLabel: string;
 
   private sub: any;
 
@@ -42,6 +42,9 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
 
   @Input()
   public size: 'sm' | 'lg';
+
+  @Input()
+  public editable = true;
 
   @Output()
   public iso3166Alpha2Change = new EventEmitter();
