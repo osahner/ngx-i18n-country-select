@@ -2,7 +2,7 @@
 
 ## A i18n country select widget
 
-Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries) library.
+Angular wrapper for [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries).
 
 [![Build Status](https://travis-ci.org/osahner/ngx-i18n-country-select.svg?branch=master)](https://travis-ci.org/osahner/ngx-i18n-country-select)
 
@@ -10,7 +10,7 @@ Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/no
 
 * **Angular** `^7`
 * **Bootstrap** `^4.1`
-* **i18n-iso-countries** `^3.2`
+* **i18n-iso-countries** `^3.7`
 
 ### Installation
 
@@ -25,7 +25,7 @@ npm install ngx-i18n-country-select --save
 
 ```ts
 // app.module.ts
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { I18nCountrySelectModule, I18nCountrySelectService } from 'ngx-i18n-country-select';
 
@@ -42,6 +42,7 @@ export function setUpI18nCountrySelect(service: I18nCountrySelectService) {
     I18nCountrySelectModule.forRoot()
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'de-DE' },
     I18nCountrySelectService,
     {
       provide: APP_INITIALIZER,
@@ -81,6 +82,10 @@ export class AppComponent {
 * **iso3166Alpha2**: model as [ISO 3166-1 Alpha2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 
 
-### License
+### Changelog
 
-MIT
+* v2.0.0 switchted to @angular/cli and ng-packagr, requires @angular/core v7 and i18n-iso-countries v3.7
+
+### LICENCE
+
+MIT © [Oliver Sahner](mailto:osahner@gmail.com)

@@ -39,8 +39,8 @@ describe('I18nCountrySelectModule', () => {
     const comp = fixture.componentInstance;
     const select = fixture.debugElement.query(By.css('select'));
 
-    let debugIdx = Math.floor(Math.random() * select.componentInstance.myCountries.length);
-    const debugCountry = select.componentInstance.myCountries[debugIdx].value;
+    let debugIdx = Math.floor(Math.random() * select.componentInstance.items.length);
+    const debugCountry = select.componentInstance.items[debugIdx].value;
     ++debugIdx;
 
     comp.model = debugCountry;

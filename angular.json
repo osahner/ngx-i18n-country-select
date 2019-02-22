@@ -137,34 +137,6 @@
           }
         }
       }
-    },
-    "ngx-i18n-country-select-tester-e2e": {
-      "root": "projects/ngx-i18n-country-select-tester-e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/ngx-i18n-country-select-tester-e2e/protractor.conf.js",
-            "devServerTarget": "ngx-i18n-country-select-tester:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ngx-i18n-country-select-tester:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "projects/ngx-i18n-country-select-tester-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
   "defaultProject": "ngx-i18n-country-select"

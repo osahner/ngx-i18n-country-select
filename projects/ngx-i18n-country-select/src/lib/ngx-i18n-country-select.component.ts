@@ -3,17 +3,15 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  Inject,
   Input,
-  LOCALE_ID,
-  OnDestroy,
-  Output
+  Output,
+  ChangeDetectionStrategy
 } from '@angular/core';
-
-import * as i18nIsoCountries from 'i18n-iso-countries';
+import { IOption, I18nCountrySelectService } from './ngx-i18n-country-select.service';
 
 @Component({
   selector: 'i18n-country-select',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <select
       name="theme"
@@ -23,23 +21,18 @@ import * as i18nIsoCountries from 'i18n-iso-countries';
       [disabled]="!editable"
     >
       <option [ngValue]="null">{{ defaultLabel }}</option>
-      <option *ngFor="let country of myCountries" [ngValue]="country.value">{{ country.display }}</option>
+      <option *ngFor="let country of items" [ngValue]="country.value">{{ country.display }}</option>
     </select>
   `
 })
-export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
+export class I18nCountrySelectComponent implements AfterViewChecked {
   public defaultLabel: string;
-
-  private sub: any;
 
   @Input()
   public iso3166Alpha2: string;
 
   @Input()
   public size: 'sm' | 'lg';
-
-  @Input()
-  public locale = 'de-DE';
 
   @Input()
   public pleaseChoose = 'Please choose...';
@@ -50,32 +43,11 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
   @Output()
   public iso3166Alpha2Change = new EventEmitter();
 
-  public myCountries: any[] = [];
+  public items: IOption[] = [];
 
-  constructor(private cdRef: ChangeDetectorRef, @Inject(LOCALE_ID) private localeId: string) {
-    let locale = 'en';
-
-    if (this.localeId.length > 2) {
-      // convert Locale from ISO 3166-2 to ISO 3166 alpha2
-      locale = this.localeId.toLowerCase().slice(0, 2);
-    } else {
-      locale = this.localeId.toLowerCase();
-    }
-    this.loadCountries(locale);
-
+  constructor(private cdRef: ChangeDetectorRef, private service: I18nCountrySelectService) {
+    this.items = this.service.loadCountries();
     this.defaultLabel = this.pleaseChoose;
-  }
-
-  private loadCountries(locale: string): void {
-    const iso3166 = i18nIsoCountries.getNames(locale);
-
-    this.myCountries = [];
-
-    for (const key of Object.keys(iso3166)) {
-      this.myCountries.push({ display: iso3166[key], value: key.toLowerCase() });
-    }
-    // sort
-    this.myCountries.sort((a: any, b: any) => a.display.localeCompare(b.display));
   }
 
   public change(newValue: string): void {
@@ -88,12 +60,5 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
       this.iso3166Alpha2 = this.iso3166Alpha2.toLowerCase();
     }
     this.cdRef.detectChanges(); // avoid ExpressionChangedAfterItHasBeenCheckedError
-  }
-
-  ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
-      this.sub = null;
-    }
   }
 }
