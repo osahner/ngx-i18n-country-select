@@ -2,22 +2,22 @@
 
 ## A i18n country select widget
 
-Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries) library. 
+Angular wrapper for [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries).
 
 [![Build Status](https://travis-ci.org/osahner/ngx-i18n-country-select.svg?branch=master)](https://travis-ci.org/osahner/ngx-i18n-country-select)
 
-#### Requires 
+#### Requires
 
-* **Angular** `^5.2.0`
-* **Bootstrap** `^4.0.0`
-* **i18n-iso-countries** `^2.1.1`
+* **Angular** `^7`
+* **Bootstrap** `^4.1`
+* **i18n-iso-countries** `^3.7`
 
 ### Installation
 
 To install this library, run:
 
-```console
-npm install i18n-iso-countries@^2.1.0  --save
+```bash
+npm install 18n-iso-countries --save
 npm install ngx-i18n-country-select --save
 ```
 
@@ -25,22 +25,35 @@ npm install ngx-i18n-country-select --save
 
 ```ts
 // app.module.ts
+import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
-import { AppComponent } from './app.component';
+import { I18nCountrySelectModule, I18nCountrySelectService } from 'ngx-i18n-country-select';
+
+export function setUpI18nCountrySelect(service: I18nCountrySelectService) {
+  return () => service.use(['de', 'en']);
+}
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, I18nCountrySelectModule.forRoot()],
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    I18nCountrySelectModule.forRoot()
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'de-DE' },
+    I18nCountrySelectService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: setUpI18nCountrySelect,
+      deps: [I18nCountrySelectService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
-```
-
-```html
-<!-- app.component.html -->
-<i18n-country-select [(iso3166Alpha2)]="item.isocode" size="sm"></i18n-country-select>
+export class AppModule { }
 ```
 
 ```ts
@@ -58,11 +71,21 @@ export class AppComponent {
 }
 ```
 
+```html
+// app.component.html
+<i18n-country-select [(iso3166Alpha2)]="item.isocode" size="sm"></i18n-country-select>
+```
+
 ### Attributes
 
 * **size**: `sm`, `lg` or nothing
 * **iso3166Alpha2**: model as [ISO 3166-1 Alpha2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 
-### License
 
-MIT
+### Changelog
+
+* v2.0.0 switchted to @angular/cli and ng-packagr, requires @angular/core v7 and i18n-iso-countries v3.7
+
+### LICENCE
+
+MIT © [Oliver Sahner](mailto:osahner@gmail.com)
