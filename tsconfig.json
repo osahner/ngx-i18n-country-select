@@ -1,17 +1,31 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./src",
-    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "declaration": false,
+    "module": "esNext",
     "moduleResolution": "node",
-    "rootDir": "./src",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "lib": [
-      "es2015",
+      "es2018",
       "dom"
     ],
-    "skipLibCheck": true,
-    "types": [
-      "jasmine",
-      "node"
-    ]
+    "paths": {
+      "ngx-i18n-country-select": [
+        "dist/ngx-i18n-country-select"
+      ],
+      "ngx-i18n-country-select/*": [
+        "dist/ngx-i18n-country-select/*"
+      ]
+    }
   }
 }

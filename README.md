@@ -2,22 +2,22 @@
 
 ## A i18n country select widget
 
-Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries) library. 
+Based on the wonderfull [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries) library.
 
 [![Build Status](https://travis-ci.org/osahner/ngx-i18n-country-select.svg?branch=master)](https://travis-ci.org/osahner/ngx-i18n-country-select)
 
-#### Requires 
+#### Requires
 
-* **Angular** `^^5.0.5`
-* **Bootstrap** `^4.0.0`
-* **i18n-iso-countries** `^2.1.0`
+* **Angular** `^7`
+* **Bootstrap** `^4.1`
+* **i18n-iso-countries** `^3.2`
 
 ### Installation
 
 To install this library, run:
 
 ```bash
-npm install 18n-iso-countries@^2.1.0  --save
+npm install 18n-iso-countries --save
 npm install ngx-i18n-country-select --save
 ```
 
@@ -25,8 +25,13 @@ npm install ngx-i18n-country-select --save
 
 ```ts
 // app.module.ts
-...
-import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { I18nCountrySelectModule, I18nCountrySelectService } from 'ngx-i18n-country-select';
+
+export function setUpI18nCountrySelect(service: I18nCountrySelectService) {
+  return () => service.use(['de', 'en']);
+}
 
 @NgModule({
   declarations: [
@@ -34,16 +39,39 @@ import { I18nCountrySelectModule } from 'ngx-i18n-country-select';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     I18nCountrySelectModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    I18nCountrySelectService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: setUpI18nCountrySelect,
+      deps: [I18nCountrySelectService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
 
+```ts
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html'
+})
+export class AppComponent {
+  item = {
+    isocode: 'de'
+  };
+}
+```
+
 ```html
+// app.component.html
 <i18n-country-select [(iso3166Alpha2)]="item.isocode" size="sm"></i18n-country-select>
 ```
 

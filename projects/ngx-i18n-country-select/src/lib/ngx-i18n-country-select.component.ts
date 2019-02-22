@@ -10,29 +10,24 @@ import {
   Output
 } from '@angular/core';
 
-import { getNames } from 'i18n-iso-countries';
+import * as i18nIsoCountries from 'i18n-iso-countries';
 
 @Component({
   selector: 'i18n-country-select',
   template: `
-    <select name="theme" [class]="'form-control' + (size ? ' form-control-' + size : '')"
-      [ngModel]="iso3166Alpha2" (ngModelChange)="change($event)" [disabled]="!editable">
-      <option [ngValue]="null">{{defaultLabel}}</option>
-      <option *ngFor="let country of myCountries" [ngValue]="country.value">{{country.display}}</option>
+    <select
+      name="theme"
+      [class]="'form-control' + (size ? ' form-control-' + size : '')"
+      [ngModel]="iso3166Alpha2"
+      (ngModelChange)="change($event)"
+      [disabled]="!editable"
+    >
+      <option [ngValue]="null">{{ defaultLabel }}</option>
+      <option *ngFor="let country of myCountries" [ngValue]="country.value">{{ country.display }}</option>
     </select>
   `
 })
 export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
-  private validLocales = ['de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'ru'];
-  private pleaseChoose = {
-    en: 'Please choose...',
-    de: 'Bitte auswählen...',
-    fr: 'Choisissez s\'il vous plaît...',
-    es: 'Elija por favor...',
-    it: 'si prega di scegliere...',
-    nl: 'Gelieve te kiezen...',
-    pl: 'proszę wybrać...'
-  };
   public defaultLabel: string;
 
   private sub: any;
@@ -44,6 +39,12 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
   public size: 'sm' | 'lg';
 
   @Input()
+  public locale = 'de-DE';
+
+  @Input()
+  public pleaseChoose = 'Please choose...';
+
+  @Input()
   public editable = true;
 
   @Output()
@@ -51,8 +52,7 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
 
   public myCountries: any[] = [];
 
-  constructor(private cdRef: ChangeDetectorRef,
-              @Inject(LOCALE_ID) private localeId: string) {
+  constructor(private cdRef: ChangeDetectorRef, @Inject(LOCALE_ID) private localeId: string) {
     let locale = 'en';
 
     if (this.localeId.length > 2) {
@@ -61,17 +61,13 @@ export class I18nCountrySelectComponent implements AfterViewChecked, OnDestroy {
     } else {
       locale = this.localeId.toLowerCase();
     }
+    this.loadCountries(locale);
 
-    if (this.validLocales.indexOf(locale) > -1) {
-      this.loadCountries(locale);
-    } else {
-      this.loadCountries('en'); // fallback locale is english
-    }
-    this.defaultLabel = this.pleaseChoose.hasOwnProperty(locale) ? this.pleaseChoose[locale] : this.pleaseChoose.en;
+    this.defaultLabel = this.pleaseChoose;
   }
 
   private loadCountries(locale: string): void {
-    const iso3166 = getNames(locale);
+    const iso3166 = i18nIsoCountries.getNames(locale);
 
     this.myCountries = [];
 
