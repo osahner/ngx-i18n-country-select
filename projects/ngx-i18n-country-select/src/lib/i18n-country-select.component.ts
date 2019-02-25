@@ -7,7 +7,7 @@ import {
   Output,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { IOption, I18nCountrySelectService } from './ngx-i18n-country-select.service';
+import { IOption, I18nCountrySelectService } from './i18n-country-select.service';
 
 @Component({
   selector: 'i18n-country-select',

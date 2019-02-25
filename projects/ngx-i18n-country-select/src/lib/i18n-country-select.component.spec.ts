@@ -1,8 +1,8 @@
 import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { Component, APP_INITIALIZER } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { I18nCountrySelectModule } from './ngx-i18n-country-select.module';
-import { I18nCountrySelectService } from './ngx-i18n-country-select.service';
+import { I18nCountrySelectModule } from './i18n-country-select.module';
+import { I18nCountrySelectService } from './i18n-country-select.service';
 
 import { By } from '@angular/platform-browser';
 

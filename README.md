@@ -1,27 +1,19 @@
 # ngx-i18n-country-select
 
-## A i18n country select widget
-
-Angular wrapper for [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries).
+> Angular wrapper for [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries).
 
 [![Build Status](https://travis-ci.org/osahner/ngx-i18n-country-select.svg?branch=master)](https://travis-ci.org/osahner/ngx-i18n-country-select)
+[![npm version](https://badge.fury.io/js/ngx-i18n-country-select.svg)](https://badge.fury.io/js/ngx-i18n-country-select)
+[![codecov](https://codecov.io/gh/osahner/ngx-i18n-country-select/branch/develop/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-i18n-country-select)
 
-#### Requires
+## Installation
 
-* **Angular** `^7`
-* **Bootstrap** `^4.1`
-* **i18n-iso-countries** `^3.7`
-
-### Installation
-
-To install this library, run:
-
-```bash
+```sh
 npm install 18n-iso-countries --save
 npm install ngx-i18n-country-select --save
 ```
 
-### Example
+## Integration
 
 ```ts
 // app.module.ts
@@ -34,13 +26,8 @@ export function setUpI18nCountrySelect(service: I18nCountrySelectService) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    I18nCountrySelectModule.forRoot()
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, I18nCountrySelectModule.forRoot()],
   providers: [
     { provide: LOCALE_ID, useValue: 'de-DE' },
     I18nCountrySelectService,
@@ -53,7 +40,7 @@ export function setUpI18nCountrySelect(service: I18nCountrySelectService) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
 ```
 
 ```ts
@@ -72,20 +59,22 @@ export class AppComponent {
 ```
 
 ```html
-// app.component.html
 <i18n-country-select [(iso3166Alpha2)]="item.isocode" size="sm"></i18n-country-select>
 ```
 
-### Attributes
+## Documentation
+> Demo on [stackblitz](https://stackblitz.com/edit/angular-ddknoz?embed=1&file=src/app/app.component.html)
 
-* **size**: `sm`, `lg` or nothing
-* **iso3166Alpha2**: model as [ISO 3166-1 Alpha2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
+| attribute         | type     | description                                                                                                      |
+| ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
+| **iso3166Alpha2** | _Object_ | model as [ISO 3166-1 Alpha2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) |
+| **size**          | _string_ | `'sm'`, `'lg'`. default: nothing.                                                                                |
 
+## Release History
 
-### Changelog
+- v2.0.0
+    - switchted to @angular/cli and ng-packagr, requires @angular/core v7 and i18n-iso-countries v3.7
 
-* v2.0.0 switchted to @angular/cli and ng-packagr, requires @angular/core v7 and i18n-iso-countries v3.7
-
-### LICENCE
+## LICENCE
 
 MIT © [Oliver Sahner](mailto:osahner@gmail.com)

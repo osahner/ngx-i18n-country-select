@@ -38,7 +38,7 @@ export class I18nCountrySelectService {
     return items.sort((a: any, b: any) => a.display.localeCompare(b.display));
   }
 
-  protected getLocale(): string {
+  getLocale(): string {
     let locale: string;
     if (this.localeId.length > 2) {
       // convert Locale from ISO 3166-2 to ISO 3166 alpha2
