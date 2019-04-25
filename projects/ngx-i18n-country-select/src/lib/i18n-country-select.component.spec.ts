@@ -69,4 +69,17 @@ describe('I18nCountrySelectModule', () => {
     tick();
     expect(`${debugIdx}: ${comp.model}`).toEqual(options[debugIdx].nativeElement.value);
   }));
+
+  it('should set required attribute', fakeAsync(() => {
+    const fixture = TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `<i18n-country-select [(iso3166Alpha2)]="model" size="sm" [mandatory]="true"></i18n-country-select>`
+      }
+    }).createComponent(TestComponent);
+    fixture.detectChanges();
+
+    const select = fixture.debugElement.query(By.css('select'));
+    const hasRequired = Object.keys(select.attributes).includes('required');
+    expect(hasRequired).toBeTruthy();
+  }));
 });
