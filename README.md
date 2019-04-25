@@ -63,17 +63,23 @@ export class AppComponent {
 ```
 
 ## Documentation
+
 > Demo on [stackblitz](https://stackblitz.com/edit/angular-ddknoz?embed=1&file=src/app/app.component.html)
 
-| attribute         | type     | description                                                                                                      |
-| ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
-| **iso3166Alpha2** | _Object_ | model as [ISO 3166-1 Alpha2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) |
-| **size**          | _string_ | `'sm'`, `'lg'`. default: nothing.                                                                                |
+| attribute         | type      | description                                                                                                      |
+| ----------------- | --------- | ---------------------------------------------------------------------------------------------------------------- |
+| **iso3166Alpha2** | _Object_  | model as [ISO 3166-1 Alpha2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) |
+| **size**          | _string_  | `'sm'`, `'lg'`. default: nothing.                                                                                |
+| **pleaseChoose**  | _string_  | default option label. default: `'Please choose...'`.                                                             |
+| **mandatory**     | _boolean_ | make select required. default: `false`                                                                           |
+| **editable**      | _boolean_ | enable or disable select. default: `true`                                                                        |
 
 ## Release History
 
+- v2.0.2
+  - add new option `mandatory` to set required attribute
 - v2.0.0
-    - switchted to @angular/cli and ng-packagr, requires @angular/core v7 and i18n-iso-countries v3.7
+  - switchted to @angular/cli and ng-packagr, requires @angular/core v7 and i18n-iso-countries v3.7
 
 ## LICENCE
 

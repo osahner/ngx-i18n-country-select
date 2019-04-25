@@ -5,7 +5,9 @@ import {
   EventEmitter,
   Input,
   Output,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ElementRef,
+  Renderer2
 } from '@angular/core';
 import { IOption, I18nCountrySelectService } from './i18n-country-select.service';
 
@@ -40,12 +42,20 @@ export class I18nCountrySelectComponent implements AfterViewChecked {
   @Input()
   public editable = true;
 
+  @Input()
+  public mandatory = false;
+
   @Output()
   public iso3166Alpha2Change = new EventEmitter();
 
   public items: IOption[] = [];
 
-  constructor(private cdRef: ChangeDetectorRef, private service: I18nCountrySelectService) {
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private service: I18nCountrySelectService
+  ) {
     this.items = this.service.loadCountries();
     this.defaultLabel = this.pleaseChoose;
   }
@@ -56,9 +66,14 @@ export class I18nCountrySelectComponent implements AfterViewChecked {
   }
 
   ngAfterViewChecked() {
+    const select = this.el.nativeElement.querySelector('select');
     if (this.iso3166Alpha2) {
       this.iso3166Alpha2 = this.iso3166Alpha2.toLowerCase();
     }
+    if (this.mandatory) {
+      this.renderer.setAttribute(select, 'required', '');
+    }
+
     this.cdRef.detectChanges(); // avoid ExpressionChangedAfterItHasBeenCheckedError
   }
 }
