@@ -9,7 +9,7 @@
 ## Installation
 
 ```sh
-npm install 18n-iso-countries --save
+npm install i18n-iso-countries --save
 npm install ngx-i18n-country-select --save
 ```
 
