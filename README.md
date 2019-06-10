@@ -75,7 +75,8 @@ export class AppComponent {
 | **editable**      | _boolean_ | enable or disable select. default: `true`                                                                        |
 
 ## Release History
-
+- v2.1.0
+  - update @angular/cli, @angular/core to v8. i18n-iso-countries to v4
 - v2.0.2
   - add new option `mandatory` to set required attribute
 - v2.0.0
