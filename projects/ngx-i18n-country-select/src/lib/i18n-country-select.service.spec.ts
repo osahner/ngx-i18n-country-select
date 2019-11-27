@@ -10,10 +10,13 @@ describe('NgxI18nCountrySelectService: INIT', () => {
     })
   );
 
-  it('should be created', inject([I18nCountrySelectService], (service: I18nCountrySelectService) => {
-    expect(service).toBeTruthy();
-    expect(service.getLocale()).toBe('en');
-  }));
+  it('should be created', inject(
+    [I18nCountrySelectService],
+    (service: I18nCountrySelectService) => {
+      expect(service).toBeTruthy();
+      expect(service.getLocale()).toBe('en');
+    }
+  ));
 });
 
 describe('NgxI18nCountrySelectService: INIT', () => {
@@ -23,9 +26,12 @@ describe('NgxI18nCountrySelectService: INIT', () => {
     })
   );
 
-  it('should be created', inject([I18nCountrySelectService], (service: I18nCountrySelectService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [I18nCountrySelectService],
+    (service: I18nCountrySelectService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 
   it('should get locale', async(async () => {
     const service: I18nCountrySelectService = TestBed.get(I18nCountrySelectService);
@@ -41,9 +47,12 @@ describe('NgxI18nCountrySelectService', () => {
     })
   );
 
-  it('should be created', inject([I18nCountrySelectService], (service: I18nCountrySelectService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [I18nCountrySelectService],
+    (service: I18nCountrySelectService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 
   it('should be created', () => {
     const service: I18nCountrySelectService = TestBed.get(I18nCountrySelectService);
