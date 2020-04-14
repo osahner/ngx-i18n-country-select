@@ -11,7 +11,7 @@ import { I18nCountrySelectService } from './i18n-country-select.service';
   exports: [I18nCountrySelectComponent]
 })
 export class I18nCountrySelectModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<I18nCountrySelectModule> {
     return {
       ngModule: I18nCountrySelectModule,
       providers: [I18nCountrySelectService]
