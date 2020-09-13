@@ -21,6 +21,9 @@
     "url": "https://github.com/osahner/ngx-i18n-country-select/issues"
   },
   "homepage": "https://github.com/osahner/ngx-i18n-country-select#readme",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
