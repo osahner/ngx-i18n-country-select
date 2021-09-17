@@ -1,4 +1,4 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { LOCALE_ID } from '@angular/core';
 
 import { I18nCountrySelectService } from './i18n-country-select.service';
@@ -33,7 +33,7 @@ describe('NgxI18nCountrySelectService: INIT', () => {
     }
   ));
 
-  it('should get locale', async(async () => {
+  it('should get locale', waitForAsync(async () => {
     const service: I18nCountrySelectService = TestBed.get(I18nCountrySelectService);
     await service.use(['ro']);
     expect(service.getLocale()).toBe('ro');
@@ -59,13 +59,13 @@ describe('NgxI18nCountrySelectService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should initialize languages', async(async () => {
+  it('should initialize languages', waitForAsync(async () => {
     const service: I18nCountrySelectService = TestBed.get(I18nCountrySelectService);
     await service.use(['de', 'en', 'sv', 'fi']);
     expect(service.localeIds.length).toBe(4);
   }));
 
-  it('should fail to load faulty locale', async(async () => {
+  it('should fail to load faulty locale', waitForAsync(async () => {
     const service: I18nCountrySelectService = TestBed.get(I18nCountrySelectService);
     await service.use(['nosuchlocale']);
     expect(service.localeIds.length).toBe(1); // default 'en' should be loaded

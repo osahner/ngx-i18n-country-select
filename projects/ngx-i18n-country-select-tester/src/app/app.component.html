@@ -7,3 +7,11 @@
 <pre>
 {{item | json}}
 </pre>
+
+
+<form [formGroup]="form">
+  <country-select cssClass="form-control form-control-lg" formControlName="country"></country-select>
+</form>
+<pre>
+  {{form.get('country').value}}
+</pre>

@@ -10,17 +10,17 @@
       "prefix": "i18n",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-i18n-country-select/tsconfig.lib.json",
             "project": "projects/ngx-i18n-country-select/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/ngx-i18n-country-select/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -30,14 +30,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-i18n-country-select/tsconfig.lib.json",
-              "projects/ngx-i18n-country-select/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-i18n-country-select/**/*.ts",
+              "projects/ngx-i18n-country-select/**/*.html"
             ]
           }
         }
@@ -53,7 +50,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/ngx-i18n-country-select-tester",
             "index": "projects/ngx-i18n-country-select-tester/src/index.html",
             "main": "projects/ngx-i18n-country-select-tester/src/main.ts",
@@ -66,7 +62,13 @@
             "styles": [
               "projects/ngx-i18n-country-select-tester/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -79,9 +81,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -97,7 +97,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -134,19 +135,19 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-i18n-country-select-tester/tsconfig.app.json",
-              "projects/ngx-i18n-country-select-tester/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-i18n-country-select-tester//**/*.ts",
+              "projects/ngx-i18n-country-select-tester//**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "ngx-i18n-country-select"
+  "defaultProject": "ngx-i18n-country-select",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
