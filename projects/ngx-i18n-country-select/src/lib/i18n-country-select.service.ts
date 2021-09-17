@@ -1,12 +1,12 @@
 import { Injectable, ErrorHandler, Inject, LOCALE_ID } from '@angular/core';
-import * as i18nIsoCountries from 'i18n-iso-countries';
+import { getNames, registerLocale } from 'i18n-iso-countries';
 
 export interface IOption {
   display: string;
   value: string;
 }
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class I18nCountrySelectService {
   localeIds = ['en'];
@@ -16,10 +16,10 @@ export class I18nCountrySelectService {
   async use(localeIds: string[]) {
     this.localeIds = [...localeIds];
     await Promise.all(
-      this.localeIds.map(async localeId => {
+      this.localeIds.map(async (localeId) => {
         try {
           const locale = await import(`i18n-iso-countries/langs/${localeId}.json`);
-          i18nIsoCountries.registerLocale(locale);
+          registerLocale(locale);
         } catch (error) {
           this.errorHandler.handleError(error);
         }
@@ -28,14 +28,10 @@ export class I18nCountrySelectService {
   }
 
   loadCountries(): IOption[] {
-    const iso3166 = i18nIsoCountries.getNames(this.getLocale());
-    const items: IOption[] = [];
-
-    for (const key of Object.keys(iso3166)) {
-      items.push({ display: iso3166[key], value: key.toLowerCase() });
-    }
-
-    return items.sort((a: any, b: any) => a.display.localeCompare(b.display));
+    return Object.entries(getNames(this.getLocale()))
+      .map(([key, value]) => [key, Array.isArray(value) ? value[0] : value])
+      .sort((a, b) => a[1].localeCompare(b[1]))
+      .map((country) => ({ display: country[1], value: country[0].toLowerCase() })) as IOption[];
   }
 
   getLocale(): string {

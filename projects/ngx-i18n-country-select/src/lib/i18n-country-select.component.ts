@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/component-selector */
 import {
   AfterViewChecked,
   ChangeDetectorRef,
@@ -16,7 +17,8 @@ import { IOption, I18nCountrySelectService } from './i18n-country-select.service
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <select
-      name="theme"
+      [name]="name"
+      [id]="name"
       [class]="'form-control' + (size ? ' form-control-' + size : '')"
       [ngModel]="iso3166Alpha2"
       (ngModelChange)="change($event)"
@@ -29,6 +31,9 @@ import { IOption, I18nCountrySelectService } from './i18n-country-select.service
 })
 export class I18nCountrySelectComponent implements AfterViewChecked {
   public defaultLabel: string;
+
+  @Input()
+  public name: string = 'I18nCountrySelect';
 
   @Input()
   public iso3166Alpha2: string;

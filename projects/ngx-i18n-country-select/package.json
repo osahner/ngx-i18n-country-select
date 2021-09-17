@@ -1,13 +1,14 @@
 {
   "name": "ngx-i18n-country-select",
-  "version": "2.1.0",
+  "version": "2.2.0-beta.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/osahner/ngx-i18n-country-select.git"
   },
   "author": {
     "name": "Oliver Sahner",
-    "email": "osahner@gmail.com"
+    "email": "osahner@gmail.com",
+    "url": "https://osahner.github.io/"
   },
   "keywords": [
     "angular",
@@ -20,9 +21,12 @@
     "url": "https://github.com/osahner/ngx-i18n-country-select/issues"
   },
   "homepage": "https://github.com/osahner/ngx-i18n-country-select#readme",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
-    "i18n-iso-countries": "^4.1"
+    "@angular/common": "^12.0.0",
+    "@angular/core": "^12.0.0",
+    "i18n-iso-countries": "^6"
   }
 }
