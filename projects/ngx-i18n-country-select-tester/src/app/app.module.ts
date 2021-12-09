@@ -14,7 +14,6 @@ export function setUpI18nCountrySelect(service: I18nCountrySelectService) {
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, I18nCountrySelectModule.forRoot()],
   providers: [
     { provide: LOCALE_ID, useValue: 'de-DE' },
-    I18nCountrySelectService,
     {
       provide: APP_INITIALIZER,
       useFactory: setUpI18nCountrySelect,

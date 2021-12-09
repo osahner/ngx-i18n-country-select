@@ -39,6 +39,10 @@ export class CountrySelectComponent implements ControlValueAccessor {
 
   @Input() public disabled = false;
 
+  @Input() public set additionalItems(items: any) {
+    this.items = [...items, ...this.items];
+  };
+
   public items: IOption[] = [];
 
   onChange = (value) => {};

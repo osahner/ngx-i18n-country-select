@@ -10,7 +10,7 @@
 
 
 <form [formGroup]="form">
-  <country-select cssClass="form-control form-control-lg" formControlName="country"></country-select>
+  <country-select [additionalItems]="[{display: 'Digital', value: ''}]" cssClass="form-control form-control-lg" formControlName="country"></country-select>
 </form>
 <pre>
   {{form.get('country').value}}
