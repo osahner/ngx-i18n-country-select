@@ -19,7 +19,7 @@ export class I18nCountrySelectService {
       this.localeIds.map(async (localeId) => {
         try {
           const locale = await import(`i18n-iso-countries/langs/${localeId}.json`);
-          registerLocale(locale);
+          registerLocale(locale.default);
         } catch (error) {
           this.errorHandler.handleError(error);
         }

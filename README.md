@@ -75,6 +75,8 @@ export class AppComponent {
 | **editable**      | _boolean_ | enable or disable select. default: `true`                                                                        |
 
 ## Release History
+- v2.2.1
+  - update @angular/cli, @angular/core to v13. i18n-iso-countries to v7
 - v2.1.0
   - update @angular/cli, @angular/core to v8. i18n-iso-countries to v4
 - v2.0.2
