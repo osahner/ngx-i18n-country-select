@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/component-selector */
-import { async, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { I18nCountrySelectModule } from './i18n-country-select.module';
@@ -20,43 +20,45 @@ describe('I18nCountrySelectModule', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       providers: [I18nCountrySelectService],
-      imports: [FormsModule, I18nCountrySelectModule.forRoot()]
+      imports: [FormsModule, I18nCountrySelectModule.forRoot()],
     });
   });
 
-
-  it('should initialize languages', waitForAsync(() => {
-    service = TestBed.inject(I18nCountrySelectService);
-    service.use(['de', 'en', 'sv', 'fi']);
-}));
+  it(
+    'should initialize languages',
+    waitForAsync(() => {
+      service = TestBed.inject(I18nCountrySelectService);
+      service.use(['de', 'en', 'sv', 'fi']);
+    })
+  );
 
   it('should update select: model -> view', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<i18n-country-select [(iso3166Alpha2)]="model" size="sm"></i18n-country-select>`
-      }
+        template: `<i18n-country-select [(iso3166Alpha2)]="model" size="sm"></i18n-country-select>`,
+      },
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
     const comp = fixture.componentInstance;
+    const hostElement = fixture.nativeElement;
     const select = fixture.debugElement.query(By.css('select'));
+
     let debugIdx = Math.floor(Math.random() * select.componentInstance.items.length);
     const debugCountry = select.componentInstance.items[debugIdx].value;
     ++debugIdx;
-
     comp.model = debugCountry;
     fixture.detectChanges();
-    console.log(`selectVal:${select.nativeElement.value}`);
-    console.log(`computeVal:${debugIdx}: ${debugCountry}`);
-
-    expect(select.nativeElement.value).toEqual(`${debugIdx}: ${debugCountry}`);
+    fixture.whenStable().then(() => {
+      expect(select.nativeElement.value).toEqual(`${debugIdx}: ${debugCountry}`);
+    });
   });
 
   it('should update select: view -> model', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<i18n-country-select [(iso3166Alpha2)]="model" size="sm"></i18n-country-select>`
-      }
+        template: `<i18n-country-select [(iso3166Alpha2)]="model" size="sm"></i18n-country-select>`,
+      },
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
@@ -75,8 +77,8 @@ describe('I18nCountrySelectModule', () => {
   it('should set required attribute', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<i18n-country-select [(iso3166Alpha2)]="model" size="sm" [mandatory]="true"></i18n-country-select>`
-      }
+        template: `<i18n-country-select [(iso3166Alpha2)]="model" size="sm" [mandatory]="true"></i18n-country-select>`,
+      },
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
