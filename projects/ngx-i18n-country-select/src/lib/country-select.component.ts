@@ -15,7 +15,7 @@ import { I18nCountrySelectService, IOption } from './i18n-country-select.service
     [attr.readonly]="readonly"
     [attr.aria-readonly]="readonly"
   >
-    <option [value]="null" disabled>{{ pleaseChoose }}</option>
+    <option [value]="null" [attr.disabled]="pleaseChooseEnabled ? null : true">{{ pleaseChoose }}</option>
     <option *ngFor="let country of items" [value]="country.value">{{ country.display }}</option>
   </select>`,
   providers: [
@@ -34,10 +34,20 @@ export class CountrySelectComponent implements ControlValueAccessor {
   @Input() value: string;
 
   @Input() public pleaseChoose = 'Please choose...';
+  @Input() public pleaseChooseEnabled = false;
 
   @Input() public readonly = false;
 
   @Input() public disabled = false;
+
+  @Input() public set additionalItems(items: IOption[]) {
+    this.items = [...items, ...this.items];
+  }
+
+  @Input() public set onlyThisItems(items: string[]) {
+    const filtered = this.items.filter((i) => items.lastIndexOf(i.value) > -1);
+    this.items = filtered;
+  }
 
   public items: IOption[] = [];
 
