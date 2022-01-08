@@ -18,9 +18,7 @@
     "package": "yarn build_lib && yarn copy-files && yarn npm_pack",
     "test": "ng test",
     "test_lib": "ng test ngx-i18n-country-select",
-    "lint": "ng lint",
-    "lint_lib": "ng lint ngx-i18n-country-select",
-    "e2e": "ng e2e"
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --fix"
   },
   "private": true,
   "dependencies": {
@@ -62,6 +60,7 @@
     "jasmine-spec-reporter": "~7.0.0",
     "karma": "~6.3.9",
     "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "^2.1.0",
     "karma-coverage-istanbul-reporter": "~3.0.3",
     "karma-jasmine": "~4.0.1",
     "karma-jasmine-html-reporter": "^1.7.0",
