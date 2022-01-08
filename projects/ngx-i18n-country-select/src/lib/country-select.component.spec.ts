@@ -34,7 +34,7 @@ describe('I18nCountrySelectModule country-select-component', () => {
     })
   );
 
-  it('should update select: model -> view', () => {
+  it('should update select: model -> view', (done) => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<form [formGroup]="form"><country-select formControlName="country"></country-select></form>`,
@@ -42,13 +42,13 @@ describe('I18nCountrySelectModule country-select-component', () => {
     }).createComponent(TestComponent);
     fixture.detectChanges();
     const select = fixture.debugElement.query(By.css('select'));
-    fixture.detectChanges();
     fixture.whenStable().then(() => {
       expect(select.nativeElement.value).toEqual('de');
+      done();
     });
   });
 
-  it('should update select: view -> model', () => {
+  it('should update select: view -> model', (done) => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<form [formGroup]="form"><country-select formControlName="country"></country-select></form>`,
@@ -67,6 +67,39 @@ describe('I18nCountrySelectModule country-select-component', () => {
 
     fixture.whenStable().then(() => {
       expect(comp.form.get('country')['value']).toEqual(options[debugIdx].nativeElement.value);
+      done();
+    });
+  });
+
+  it('should add additional entries', (done) => {
+    const fixture = TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `<form [formGroup]="form"><country-select [additionalItems]="[{display: 'Online', value: ''}]" formControlName="country"></country-select></form>`,
+      },
+    }).createComponent(TestComponent);
+    fixture.detectChanges();
+    const options = fixture.debugElement.queryAll(By.css('option'));
+    fixture.whenStable().then(() => {
+      const found = options.find(opt => opt.nativeElement.value === '')
+      expect(found).toBeDefined();
+      done();
+    });
+  });
+
+  it('should show only selected entries', (done) => {
+    const fixture = TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `<form [formGroup]="form"><country-select [onlyThisItems]="['de']" formControlName="country"></country-select></form>`,
+      },
+    }).createComponent(TestComponent);
+    fixture.detectChanges();
+    const options = fixture.debugElement.queryAll(By.css('option'));
+    fixture.whenStable().then(() => {
+      let found = options.find(opt => opt.nativeElement.value === 'en')
+      expect(found).toBeUndefined();
+      found = options.find(opt => opt.nativeElement.value === 'de')
+      expect(found).toBeDefined();
+      done();
     });
   });
 });

@@ -2,7 +2,7 @@
 
 > Angular wrapper for [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries).
 
-[![Build Status](https://travis-ci.org/osahner/ngx-i18n-country-select.svg?branch=master)](https://travis-ci.org/osahner/ngx-i18n-country-select)
+[![Build Status](https://app.travis-ci.com/osahner/ngx-i18n-country-select.svg?branch=master)](https://app.travis-ci.com/osahner/ngx-i18n-country-select)
 [![npm version](https://badge.fury.io/js/ngx-i18n-country-select.svg)](https://badge.fury.io/js/ngx-i18n-country-select)
 [![codecov](https://codecov.io/gh/osahner/ngx-i18n-country-select/branch/develop/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-i18n-country-select)
 

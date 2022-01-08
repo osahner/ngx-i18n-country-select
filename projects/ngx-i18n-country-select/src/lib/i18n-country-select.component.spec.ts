@@ -32,7 +32,7 @@ describe('I18nCountrySelectModule i18n-country-select classic component', () => 
     })
   );
 
-  it('should update select: model -> view', () => {
+  it('should update select: model -> view', (done) => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<i18n-country-select [(iso3166Alpha2)]="model" size="sm"></i18n-country-select>`,
@@ -51,6 +51,7 @@ describe('I18nCountrySelectModule i18n-country-select classic component', () => 
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       expect(select.nativeElement.value).toEqual(`${debugIdx}: ${debugCountry}`);
+      done();
     });
   });
 
