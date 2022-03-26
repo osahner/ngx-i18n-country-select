@@ -11,7 +11,7 @@ export function setUpI18nCountrySelect(service: I18nCountrySelectService) {
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, I18nCountrySelectModule.forRoot()],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, I18nCountrySelectModule],
   providers: [
     { provide: LOCALE_ID, useValue: 'de' },
     {

@@ -6,7 +6,7 @@ import { I18nCountrySelectService } from './i18n-country-select.service';
 describe('NgxI18nCountrySelectService: INIT', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      providers: [{ provide: LOCALE_ID, useValue: 'de' }, I18nCountrySelectService]
+      providers: [{ provide: LOCALE_ID, useValue: 'de' }, I18nCountrySelectService],
     })
   );
 
@@ -22,7 +22,7 @@ describe('NgxI18nCountrySelectService: INIT', () => {
 describe('NgxI18nCountrySelectService: INIT', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      providers: [{ provide: LOCALE_ID, useValue: 'RO' }, I18nCountrySelectService]
+      providers: [{ provide: LOCALE_ID, useValue: 'RO' }, I18nCountrySelectService],
     })
   );
 
@@ -33,17 +33,20 @@ describe('NgxI18nCountrySelectService: INIT', () => {
     }
   ));
 
-  it('should get locale', waitForAsync(async () => {
-    const service: I18nCountrySelectService = TestBed.get(I18nCountrySelectService);
-    await service.use(['ro']);
-    expect(service.getLocale()).toBe('ro');
-  }));
+  it(
+    'should get locale',
+    waitForAsync(async () => {
+      const service: I18nCountrySelectService = TestBed.inject(I18nCountrySelectService);
+      await service.use(['ro']);
+      expect(service.getLocale()).toBe('ro');
+    })
+  );
 });
 
 describe('NgxI18nCountrySelectService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }, I18nCountrySelectService]
+      providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }, I18nCountrySelectService],
     })
   );
 
@@ -55,19 +58,25 @@ describe('NgxI18nCountrySelectService', () => {
   ));
 
   it('should be created', () => {
-    const service: I18nCountrySelectService = TestBed.get(I18nCountrySelectService);
+    const service: I18nCountrySelectService = TestBed.inject(I18nCountrySelectService);
     expect(service).toBeTruthy();
   });
 
-  it('should initialize languages', waitForAsync(async () => {
-    const service: I18nCountrySelectService = TestBed.get(I18nCountrySelectService);
-    await service.use(['de', 'en', 'sv', 'fi']);
-    expect(service.localeIds.length).toBe(4);
-  }));
+  it(
+    'should initialize languages',
+    waitForAsync(async () => {
+      const service: I18nCountrySelectService = TestBed.inject(I18nCountrySelectService);
+      await service.use(['de', 'en', 'sv', 'fi']);
+      expect(service.localeIds.length).toBe(4);
+    })
+  );
 
-  it('should fail to load faulty locale', waitForAsync(async () => {
-    const service: I18nCountrySelectService = TestBed.get(I18nCountrySelectService);
-    await service.use(['nosuchlocale']);
-    expect(service.localeIds.length).toBe(1); // default 'en' should be loaded
-  }));
+  it(
+    'should fail to load faulty locale',
+    waitForAsync(async () => {
+      const service: I18nCountrySelectService = TestBed.inject(I18nCountrySelectService);
+      await service.use(['nosuchlocale']);
+      expect(service.localeIds.length).toBe(1); // default 'en' should be loaded
+    })
+  );
 });

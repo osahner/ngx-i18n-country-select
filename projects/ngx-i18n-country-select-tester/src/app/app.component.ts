@@ -8,13 +8,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   title = 'ngx-i18n-country-select-tester';
-  item = {
-    isocode: 'de',
-  };
-  form: FormGroup;
+  form1: FormGroup;
+  form2: FormGroup;
 
   constructor(private builder: FormBuilder) {
-    this.form = this.builder.group({
+    this.form1 = this.builder.group({
+      country: ['de'],
+    });
+    this.form2 = this.builder.group({
       country: ['de'],
     });
   }

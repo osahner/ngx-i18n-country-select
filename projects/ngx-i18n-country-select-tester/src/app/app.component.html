@@ -1,26 +1,14 @@
-<form>
-  <div class="form-group">
-    <label>Country</label>
-    <i18n-country-select [(iso3166Alpha2)]="item.isocode" size="sm"></i18n-country-select>
-  </div>
-</form>
-<pre>
-{{item | json}}
-</pre>
-
-
-<form [formGroup]="form">
+<form [formGroup]="form1">
   <country-select [pleaseChooseEnabled]="true" [additionalItems]="[{display: 'Digital', value: ''}]"
     cssClass="form-control form-control-lg" formControlName="country"></country-select>
 </form>
 <pre>
-  {{form.get('country').value}}
+  {{form1.get('country').value}}
 </pre>
-
-<form [formGroup]="form">
+<form [formGroup]="form2">
   <country-select [onlyThisItems]="['', 'de', 'fr', 'nl']" [additionalItems]="[{display: 'Digital', value: ''}]"
     cssClass="form-control form-control-lg" formControlName="country"></country-select>
 </form>
 <pre>
-  {{form.get('country').value}}
+  {{form2.get('country').value}}
 </pre>
