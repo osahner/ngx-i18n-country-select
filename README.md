@@ -75,6 +75,8 @@ export class AppComponent {
 | **editable**      | _boolean_ | enable or disable select. default: `true`                                                                        |
 
 ## Release History
+- v2.2.2
+  - [renamed default branch to main](#rename-local-master-branch-to-main)
 - v2.2.1
   - update @angular/cli, @angular/core to v13. i18n-iso-countries to v7
 - v2.1.0
@@ -83,6 +85,13 @@ export class AppComponent {
   - add new option `mandatory` to set required attribute
 - v2.0.0
   - switchted to @angular/cli and ng-packagr, requires @angular/core v7 and i18n-iso-countries v3.7
+
+#### Rename local master branch to main
+```shell
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+```
 
 ## LICENCE
 
