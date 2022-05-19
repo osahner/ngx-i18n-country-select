@@ -72,7 +72,6 @@ describe('I18nCountrySelectModule', () => {
       expect(found).toBeDefined();
     });
   }));
- */
 
   it('should show only selected entries', (done) => {
     component.onlyThisItems = ['', 'de'];
@@ -86,4 +85,6 @@ describe('I18nCountrySelectModule', () => {
       done();
     });
   });
+   */
+
 });

@@ -6,6 +6,8 @@
 [![npm version](https://badge.fury.io/js/ngx-i18n-country-select.svg)](https://badge.fury.io/js/ngx-i18n-country-select)
 [![codecov](https://codecov.io/gh/osahner/ngx-i18n-country-select/branch/develop/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-i18n-country-select)
 
+## Major Todos: Fix testcases & documentation
+
 ## Installation
 
 ```sh
