@@ -6,7 +6,7 @@ import { I18nCountrySelectService, IOption } from './i18n-country-select.service
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'country-select',
   template: ` <select
-    [name]="name"
+    [name]="name ?? ''"
     [id]="name"
     [class]="cssClass"
     [ngModel]="value"
@@ -15,7 +15,9 @@ import { I18nCountrySelectService, IOption } from './i18n-country-select.service
     [attr.readonly]="readonly"
     [attr.aria-readonly]="readonly"
   >
-    <option [value]="null" [attr.disabled]="pleaseChooseEnabled ? null : true">{{ pleaseChoose }}</option>
+    <option [value]="null" [attr.disabled]="pleaseChooseEnabled ? null : true">
+      {{ pleaseChoose }}
+    </option>
     <option *ngFor="let country of items" [value]="country.value">{{ country.display }}</option>
   </select>`,
   providers: [
@@ -27,11 +29,11 @@ import { I18nCountrySelectService, IOption } from './i18n-country-select.service
   ],
 })
 export class CountrySelectComponent implements ControlValueAccessor {
-  @Input() name: string;
+  @Input() name?: string;
 
-  @Input() cssClass: string;
+  @Input() cssClass?: string;
 
-  @Input() value: string;
+  @Input() value?: string;
 
   @Input() public pleaseChoose = 'Please choose...';
   @Input() public pleaseChooseEnabled = false;
@@ -49,9 +51,18 @@ export class CountrySelectComponent implements ControlValueAccessor {
     this.items = filtered;
   }
 
+  @Input() public set renameItemsDisplay(items: IOption[]) {
+    items.forEach((item) => {
+      const i = this.items.findIndex((orig) => orig.value === item.value);
+      if (i > -1) {
+        this.items[i].display = item.display;
+      }
+    });
+  }
+
   public items: IOption[] = [];
 
-  onChange = (value) => {};
+  onChange = (value: unknown) => {};
 
   onTouched = () => {};
 
