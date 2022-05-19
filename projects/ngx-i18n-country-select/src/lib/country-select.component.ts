@@ -52,12 +52,17 @@ export class CountrySelectComponent implements ControlValueAccessor {
   }
 
   @Input() public set renameItemsDisplay(items: IOption[]) {
+    let dirty = false;
     items.forEach((item) => {
       const i = this.items.findIndex((orig) => orig.value === item.value);
       if (i > -1) {
         this.items[i].display = item.display;
+        dirty = true;
       }
     });
+    if (dirty) {
+      this.items = this.items.sort((a: IOption, b: IOption) => a.display.localeCompare(b.display));
+    }
   }
 
   public items: IOption[] = [];
