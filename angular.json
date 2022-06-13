@@ -143,8 +143,9 @@
       }
     }
   },
-  "defaultProject": "ngx-i18n-country-select",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

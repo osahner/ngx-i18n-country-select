@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   title = 'ngx-i18n-country-select-tester';
-  form1: FormGroup;
-  form2: FormGroup;
+  form1: UntypedFormGroup;
+  form2: UntypedFormGroup;
 
-  constructor(private builder: FormBuilder) {
+  constructor(private builder: UntypedFormBuilder) {
     this.form1 = this.builder.group({
       country: ['de'],
     });
