@@ -77,6 +77,8 @@ export class AppComponent {
 | **editable**      | _boolean_ | enable or disable select. default: `true`                                                                        |
 
 ## Release History
+- v2.2.6
+  - angular v15, still missing documentation & tests
 - v2.2.2
   - [renamed default branch to main](#rename-local-master-branch-to-main)
 - v2.2.1

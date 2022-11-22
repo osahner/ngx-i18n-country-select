@@ -59,7 +59,9 @@
               "projects/ngx-i18n-country-select-tester/src/favicon.ico",
               "projects/ngx-i18n-country-select-tester/src/assets"
             ],
-            "styles": ["projects/ngx-i18n-country-select-tester/src/styles.css"],
+            "styles": [
+              "projects/ngx-i18n-country-select-tester/src/styles.css"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -67,7 +69,9 @@
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
-            "allowedCommonJsDependencies": ["i18n-iso-countries"]
+            "allowedCommonJsDependencies": [
+              "i18n-iso-countries"
+            ]
           },
           "configurations": {
             "production": {
@@ -123,7 +127,9 @@
             "polyfills": "projects/ngx-i18n-country-select-tester/src/polyfills.ts",
             "tsConfig": "projects/ngx-i18n-country-select-tester/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-i18n-country-select-tester/karma.conf.js",
-            "styles": ["projects/ngx-i18n-country-select-tester/src/styles.css"],
+            "styles": [
+              "projects/ngx-i18n-country-select-tester/src/styles.css"
+            ],
             "scripts": [],
             "assets": [
               "projects/ngx-i18n-country-select-tester/src/favicon.ico",
@@ -147,5 +153,13 @@
     "schematicCollections": [
       "@angular-eslint/schematics"
     ]
+  },
+  "schematics": {
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
   }
 }
