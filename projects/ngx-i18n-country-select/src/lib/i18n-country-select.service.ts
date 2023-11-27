@@ -3,7 +3,7 @@ import { getNames, registerLocale } from 'i18n-iso-countries';
 
 export interface IOption {
   display: string;
-  value: string;
+  value: string | null;
 }
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export interface IOption {
 export class I18nCountrySelectService {
   localeIds = ['en'];
 
-  constructor(@Inject(LOCALE_ID) private localeId: string, private errorHandler: ErrorHandler) {}
+  constructor(@Inject(LOCALE_ID) public glocaleId: string, private errorHandler: ErrorHandler) {}
 
   async use(localeIds: string[]) {
     this.localeIds = [...localeIds];
@@ -27,24 +27,25 @@ export class I18nCountrySelectService {
     );
   }
 
-  loadCountries(): IOption[] {
-    return Object.entries(getNames(this.getLocale()))
+  loadCountries(locale?: string): IOption[] {
+    return Object.entries(getNames(this.getLocale(locale)))
       .map(([key, value]) => [key, Array.isArray(value) ? value[0] : value])
       .sort((a, b) => a[1].localeCompare(b[1]))
       .map((country) => ({ display: country[1], value: country[0].toLowerCase() })) as IOption[];
   }
 
-  getLocale(): string {
-    let locale: string;
-    if (this.localeId.length > 2) {
+  getLocale(locale: string = 'de'): string {
+    let l: string;
+
+    if (locale.length > 2) {
       // convert Locale from ISO 3166-2 to ISO 3166 alpha2
-      locale = this.localeId.toLowerCase().slice(0, 2);
+      l = locale?.toLowerCase().slice(0, 2);
     } else {
-      locale = this.localeId.toLowerCase();
+      l = locale?.toLowerCase();
     }
     // return locale only if loaded else first available
-    if (this.localeIds.indexOf(locale) > -1) {
-      return locale;
+    if (this.localeIds.indexOf(l) > -1) {
+      return l;
     } else {
       return this.localeIds[0];
     }

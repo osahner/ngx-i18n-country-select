@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/forms';
 import { I18nCountrySelectService, IOption } from './i18n-country-select.service';
+import { NgFor } from '@angular/common';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -18,7 +19,13 @@ import { I18nCountrySelectService, IOption } from './i18n-country-select.service
     <option [value]="null" [attr.disabled]="pleaseChooseEnabled ? null : true">
       {{ pleaseChoose }}
     </option>
-    <option *ngFor="let country of items" [value]="country.value">{{ country.display }}</option>
+    <option
+      *ngFor="let country of items"
+      [value]="country.value"
+      [attr.disabled]="country.value ? null : disableEmptyValue"
+    >
+      {{ country.display }}
+    </option>
   </select>`,
   providers: [
     {
@@ -27,45 +34,34 @@ import { I18nCountrySelectService, IOption } from './i18n-country-select.service
       useExisting: CountrySelectComponent,
     },
   ],
+  standalone: true,
+  imports: [FormsModule, NgFor],
 })
-export class CountrySelectComponent implements ControlValueAccessor {
+export class CountrySelectComponent implements ControlValueAccessor, OnInit {
+  @Input() locale?: string = 'de';
+
   @Input() name?: string;
 
   @Input() cssClass?: string;
 
   @Input() value?: string;
 
-  @Input() public pleaseChoose = 'Please choose...';
-  @Input() public pleaseChooseEnabled = false;
+  @Input() pleaseChoose = 'Please choose...';
+  @Input() pleaseChooseEnabled = false;
 
-  @Input() public readonly = false;
+  @Input() readonly = false;
 
-  @Input() public disabled = false;
+  @Input() disabled = false;
 
-  @Input() public set additionalItems(items: IOption[]) {
-    this.items = [...items, ...this.items];
-  }
+  @Input() disableEmptyValue = false;
 
-  @Input() public set onlyThisItems(items: string[]) {
-    const filtered = this.items.filter((i) => items.lastIndexOf(i.value) > -1);
-    this.items = filtered;
-  }
+  @Input() additionalItems: IOption[] | undefined;
 
-  @Input() public set renameItemsDisplay(items: IOption[]) {
-    let dirty = false;
-    items.forEach((item) => {
-      const i = this.items.findIndex((orig) => orig.value === item.value);
-      if (i > -1) {
-        this.items[i].display = item.display;
-        dirty = true;
-      }
-    });
-    if (dirty) {
-      this.items = this.items.sort((a: IOption, b: IOption) => a.display.localeCompare(b.display));
-    }
-  }
+  @Input() onlyThisItems: string[] | undefined;
 
-  public items: IOption[] = [];
+  @Input() renameItemsDisplay: IOption[] | undefined;
+
+  items: IOption[] = [];
 
   onChange = (value: unknown) => {};
 
@@ -73,8 +69,44 @@ export class CountrySelectComponent implements ControlValueAccessor {
 
   touched = false;
 
-  constructor(private service: I18nCountrySelectService) {
-    this.items = this.service.loadCountries();
+  constructor(private service: I18nCountrySelectService) {}
+
+  ngOnInit(): void {
+    this.items = this.service.loadCountries(this.locale);
+
+    if (this.renameItemsDisplay) {
+      let dirty = false;
+      this.renameItemsDisplay.forEach((item) => {
+        const i = this.items.findIndex((orig) => orig.value === item.value);
+        if (i > -1) {
+          this.items[i].display = item.display;
+          dirty = true;
+        }
+      });
+      if (dirty) {
+        this.items = this.items.sort((a: IOption, b: IOption) =>
+          a.display.localeCompare(b.display)
+        );
+      }
+    }
+    if (this.onlyThisItems) {
+      const filtered = this.items.filter(
+        (i) => i.value && this.onlyThisItems!!.lastIndexOf(i.value) > -1
+      );
+      this.items = filtered;
+    }
+
+    if (this.additionalItems) {
+      // first remove all items that are in the additional list
+      this.additionalItems.forEach((item) => {
+        const i = this.items.findIndex((orig) => orig.value === item.value);
+        if (i > -1) {
+          const result = this.items.splice(i, 1);
+        }
+      });
+      // then add the additional items to the beginning of the list
+      this.items = [...this.additionalItems, ...this.items];
+    }
   }
 
   change($event?: string) {

@@ -22,11 +22,10 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-devkit/build-angular:jest",
           "options": {
-            "main": "projects/ngx-i18n-country-select/src/test.ts",
-            "tsConfig": "projects/ngx-i18n-country-select/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-i18n-country-select/karma.conf.js"
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "projects/ngx-i18n-country-select/tsconfig.spec.json"
           }
         },
         "lint": {
@@ -106,43 +105,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-i18n-country-select-tester:build"
+            "buildTarget": "ngx-i18n-country-select-tester:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-i18n-country-select-tester:build:production"
+              "buildTarget": "ngx-i18n-country-select-tester:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-i18n-country-select-tester:build"
+            "buildTarget": "ngx-i18n-country-select-tester:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-devkit/build-angular:jest",
           "options": {
-            "main": "projects/ngx-i18n-country-select-tester/src/test.ts",
-            "polyfills": "projects/ngx-i18n-country-select-tester/src/polyfills.ts",
-            "tsConfig": "projects/ngx-i18n-country-select-tester/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-i18n-country-select-tester/karma.conf.js",
-            "styles": [
-              "projects/ngx-i18n-country-select-tester/src/styles.css"
-            ],
-            "scripts": [],
-            "assets": [
-              "projects/ngx-i18n-country-select-tester/src/favicon.ico",
-              "projects/ngx-i18n-country-select-tester/src/assets"
-            ]
+            "tsConfig": "tsconfig.spec.json",
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/ngx-i18n-country-select-tester//**/*.ts",
-              "projects/ngx-i18n-country-select-tester//**/*.html"
+              "src//**/*.ts",
+              "src//**/*.html"
             ]
           }
         }

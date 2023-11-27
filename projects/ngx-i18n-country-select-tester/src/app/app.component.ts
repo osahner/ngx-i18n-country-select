@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CountrySelectComponent } from '../../../ngx-i18n-country-select/src/public_api';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: true,
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        CountrySelectComponent,
+    ],
 })
 export class AppComponent {
   title = 'ngx-i18n-country-select-tester';
@@ -16,7 +23,7 @@ export class AppComponent {
       country: ['de'],
     });
     this.form2 = this.builder.group({
-      country: ['de'],
+      country: ['en'],
     });
   }
 }

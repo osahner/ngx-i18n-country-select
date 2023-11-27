@@ -1,15 +1,29 @@
 <form [formGroup]="form1">
-  <country-select [pleaseChooseEnabled]="true" [additionalItems]="[{display: 'Digital', value: ''}]"
-    cssClass="form-control form-control-lg" formControlName="country"></country-select>
+  <country-select
+    locale="fi"
+    [pleaseChooseEnabled]="true"
+    [additionalItems]="[{ display: 'Digital', value: null }]"
+    [disableEmptyValue]="false"
+    cssClass="form-control"
+    formControlName="country"
+  ></country-select>
 </form>
 <pre>
-  {{form1.get('country')?.value}}
+  {{ form1.get('country')?.value }}
 </pre>
 <form [formGroup]="form2">
-  <country-select [onlyThisItems]="['', 'de', 'fr', 'nl']" [additionalItems]="[{display: 'Digital', value: ''}]"
-  [renameItemsDisplay]="[{display: '🇩🇪 Deutschland', value: 'de'}]"
-    cssClass="form-control form-control-lg" formControlName="country"></country-select>
+  <country-select
+    [additionalItems]="[
+      { display: '🇩🇪 Deutschland', value: 'de' },
+      { display: '🇦🇹 Österreich', value: 'at' },
+      { display: '🇨🇭 Schweiz', value: 'ch' },
+      { display: '🇺🇸 USA', value: 'us' },
+      { display: '──────────', value: null }
+    ]"
+    cssClass="form-control"
+    formControlName="country"
+  ></country-select>
 </form>
 <pre>
-  {{form2.get('country')?.value}}
+  {{ form2.get('country')?.value }}
 </pre>

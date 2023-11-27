@@ -2,7 +2,6 @@
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { APP_INITIALIZER, Component, LOCALE_ID } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { I18nCountrySelectModule } from './i18n-country-select.module';
 import { I18nCountrySelectService } from './i18n-country-select.service';
 
 import { By } from '@angular/platform-browser';
@@ -18,19 +17,18 @@ describe('I18nCountrySelectModule', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CountrySelectComponent],
-      providers: [
+    providers: [
         { provide: LOCALE_ID, useValue: 'de' },
         {
-          provide: APP_INITIALIZER,
-          useFactory: setUpI18nCountrySelect,
-          deps: [I18nCountrySelectService],
-          multi: true,
+            provide: APP_INITIALIZER,
+            useFactory: setUpI18nCountrySelect,
+            deps: [I18nCountrySelectService],
+            multi: true,
         },
         I18nCountrySelectService,
-      ],
-      imports: [FormsModule, ReactiveFormsModule, I18nCountrySelectModule],
-    });
+    ],
+    imports: [FormsModule, ReactiveFormsModule, CountrySelectComponent],
+});
     fixture = TestBed.createComponent(CountrySelectComponent);
     component = fixture.componentInstance;
   });
